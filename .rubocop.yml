@@ -5,6 +5,7 @@ AllCops:
     - log/**/*
     - tmp/**/*
     - vendor/**/*
+    - .git/**/*
 
 # Githubのプルリクエストではみ出さない120文字を上限とする
 Metrics/LineLength:
