@@ -13,14 +13,6 @@ Layout/EmptyLines:
     - 'Gemfile'
     - 'config/environments/development.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, no_empty_lines
-Layout/EmptyLinesAroundBlockBody:
-  Exclude:
-    - 'db/schema.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
@@ -47,14 +39,6 @@ Style/Documentation:
     - 'app/models/application_record.rb'
     - 'config/application.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/ExpandPathArguments:
-  Exclude:
-    - 'bin/rails'
-    - 'bin/rake'
-    - 'bin/rubocop'
-
 # Offense count: 35
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
@@ -69,13 +53,6 @@ Style/FrozenStringLiteralComment:
     - 'app/jobs/application_job.rb'
     - 'app/mailers/application_mailer.rb'
     - 'app/models/application_record.rb'
-    - 'bin/bundle'
-    - 'bin/rails'
-    - 'bin/rake'
-    - 'bin/rubocop'
-    - 'bin/setup'
-    - 'bin/spring'
-    - 'bin/update'
     - 'config.ru'
     - 'config/application.rb'
     - 'config/boot.rb'
@@ -93,15 +70,8 @@ Style/FrozenStringLiteralComment:
     - 'config/puma.rb'
     - 'config/routes.rb'
     - 'config/spring.rb'
-    - 'db/schema.rb'
     - 'db/seeds.rb'
     - 'test/test_helper.rb'
-
-# Offense count: 2
-Style/MixinUsage:
-  Exclude:
-    - 'bin/setup'
-    - 'bin/update'
 
 # Offense count: 16
 # Cop supports --auto-correct.
@@ -109,7 +79,6 @@ Style/MixinUsage:
 # SupportedStyles: single_quotes, double_quotes
 Style/StringLiterals:
   Exclude:
-    - 'bin/spring'
     - 'config/application.rb'
     - 'config/environments/production.rb'
     - 'config/puma.rb'
