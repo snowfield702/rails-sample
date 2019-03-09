@@ -1,0 +1,28 @@
+AllCops:
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - log/**/*
+    - tmp/**/*
+    - vendor/**/*
+    - .git/**/*
+
+# Githubのプルリクエストではみ出さない120文字を上限とする
+Metrics/LineLength:
+  Max: 120
+
+# 日本語のコメントを許可する
+Style/AsciiComments:
+  Enabled: false
+
+# ドキュメントの無い public class を許可する
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/*
