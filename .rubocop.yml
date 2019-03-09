@@ -6,3 +6,4 @@ AllCops:
     - db/schema.rb
     - log/**/*
     - tmp/**/*
+    - vendor/**/*
