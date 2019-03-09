@@ -1,0 +1,53 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: ruby:2.6.1
+        environment:
+          RAILS_ENV: test
+          TEST_DB_HOST: 127.0.0.1
+          TEST_DB_PASSWORD: password
+          CIRCLE_TEST_REPORTS: /tmp/test-results
+          TZ: "/usr/share/zoneinfo/Asia/Tokyo"
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      - image: mysql:5.7
+        environment:
+          MYSQL_ROOT_PASSWORD: password
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Run Rubocop
+          command: .circleci/run-rubocop.sh
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
