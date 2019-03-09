@@ -4,3 +4,5 @@ AllCops:
   Exclude:
     - bin/*
     - db/schema.rb
+    - log/**/*
+    - tmp/**/*
