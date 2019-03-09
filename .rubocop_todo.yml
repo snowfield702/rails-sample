@@ -15,16 +15,6 @@ Style/Documentation:
     - 'app/models/application_record.rb'
     - 'config/application.rb'
 
-# Offense count: 16
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'config/application.rb'
-    - 'config/environments/production.rb'
-    - 'config/puma.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: MinSize.
