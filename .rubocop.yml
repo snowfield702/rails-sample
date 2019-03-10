@@ -19,6 +19,10 @@ Style/AsciiComments:
 Style/Documentation:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/*
+
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*
