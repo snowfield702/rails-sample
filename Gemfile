@@ -38,6 +38,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rspec-json_matcher', require: false
   gem 'rspec-rails', require: false
+  gem 'rspec_junit_formatter', require: false
   gem 'rubocop-checkstyle_formatter', require: false
   gem 'rubocop-junit-formatter', require: false
   gem 'rubocop-select', require: false
