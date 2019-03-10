@@ -9,10 +9,13 @@ jobs:
       # specify the version you desire here
       - image: ruby:2.6.1
         environment:
+          CIRCLE_TEST_REPORTS: /tmp/test-results
+          DEVELOPMENT_DB_HOST:
+          DEVELOPMENT_DB_PASSWORD:
           RAILS_ENV: test
+          SITE_HOST: example.com
           TEST_DB_HOST: 127.0.0.1
           TEST_DB_PASSWORD: password
-          CIRCLE_TEST_REPORTS: /tmp/test-results
           TZ: "/usr/share/zoneinfo/Asia/Tokyo"
 
       # Specify service dependencies here if necessary
@@ -44,6 +47,10 @@ jobs:
       - run:
           name: Run Rubocop
           command: .circleci/run-rubocop.sh
+
+      - run:
+          name: Run Rspec
+          command: .circleci/run-rspec.sh
 
       # collect reports
       - store_test_results:
