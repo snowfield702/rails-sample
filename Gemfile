@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rubocop-select', require: false
   gem 'saddler', require: false
   gem 'saddler-reporter-github', require: false
+  gem 'spring-commands-rspec'
 end
 
 group :development do
