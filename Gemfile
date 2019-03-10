@@ -12,6 +12,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'puma', '~> 3.11'
 gem 'redis', '~> 4.0'
+gem 'sentry-raven'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
