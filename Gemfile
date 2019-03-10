@@ -33,17 +33,17 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'checkstyle_filter-git'
-  gem 'rubocop-checkstyle_formatter'
-  gem 'rubocop-junit-formatter'
-  gem 'rubocop-select'
-  gem 'saddler'
-  gem 'saddler-reporter-github'
+  gem 'checkstyle_filter-git', require: false
+  gem 'rubocop-checkstyle_formatter', require: false
+  gem 'rubocop-junit-formatter', require: false
+  gem 'rubocop-select', require: false
+  gem 'saddler', require: false
+  gem 'saddler-reporter-github', require: false
 end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'rubocop'
+  gem 'rubocop', require: false
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-commands-rubocop'
