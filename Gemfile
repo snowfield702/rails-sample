@@ -36,6 +36,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'checkstyle_filter-git', require: false
   gem 'factory_bot_rails'
+  gem 'rspec-json_matcher', require: false
   gem 'rspec-rails', require: false
   gem 'rubocop-checkstyle_formatter', require: false
   gem 'rubocop-junit-formatter', require: false
