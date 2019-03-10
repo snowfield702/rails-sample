@@ -22,10 +22,12 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - config/environments/*
+    - spec/**/*_spec.rb
 
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*
+  Max: 20
 
 Metrics/AbcSize:
   Exclude:

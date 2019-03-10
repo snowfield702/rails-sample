@@ -8,6 +8,7 @@ ruby '2.6.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 
+gem 'active_model_serializers'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'puma', '~> 3.11'
@@ -34,11 +35,15 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'checkstyle_filter-git', require: false
+  gem 'factory_bot_rails'
+  gem 'rspec-json_matcher', require: false
+  gem 'rspec-rails', require: false
   gem 'rubocop-checkstyle_formatter', require: false
   gem 'rubocop-junit-formatter', require: false
   gem 'rubocop-select', require: false
   gem 'saddler', require: false
   gem 'saddler-reporter-github', require: false
+  gem 'spring-commands-rspec'
 end
 
 group :development do
