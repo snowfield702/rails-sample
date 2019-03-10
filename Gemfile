@@ -8,6 +8,7 @@ ruby '2.6.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 
+gem 'active_model_serializers'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 gem 'puma', '~> 3.11'
