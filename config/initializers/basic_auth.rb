@@ -12,7 +12,9 @@ class CustomAuthBasicMiddelware < Rack::Auth::Basic
 end
 
 Rails.application.configure do
-  config.middleware.use CustomAuthBasicMiddelware do |username, password|
-    username == ENV['NGROK_BASIC_USER'] && password == ENV['NGROK_BASIC_PASS']
+  if Rails.env.development?
+    config.middleware.use CustomAuthBasicMiddelware do |username, password|
+      username == ENV['NGROK_BASIC_USER'] && password == ENV['NGROK_BASIC_PASS']
+    end
   end
 end
