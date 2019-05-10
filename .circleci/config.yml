@@ -6,9 +6,34 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: ruby:2.6.1
         environment:
+          BUNDLE_APP_CONFIG: .bundle
+          TZ: Asia/Tokyo
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --deployment --without development
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+            - .bundle/config
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  test:
+    docker:
+      - image: ruby:2.6.1
+        environment:
+          BUNDLE_APP_CONFIG: .bundle
           CIRCLE_TEST_REPORTS: /tmp/test-results
           DEVELOPMENT_DB_HOST:
           DEVELOPMENT_DB_PASSWORD:
@@ -16,45 +41,65 @@ jobs:
           SITE_HOST: example.com
           TEST_DB_HOST: 127.0.0.1
           TEST_DB_PASSWORD: password
-          TZ: "/usr/share/zoneinfo/Asia/Tokyo"
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
+          TZ: Asia/Tokyo
       - image: mysql:5.7
         environment:
           MYSQL_ROOT_PASSWORD: password
-
-    working_directory: ~/repo
-
+    working_directory: ~/app
     steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      - run:
-          name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
+      - attach_workspace:
+          at: .
       - run:
           name: Run Rubocop
           command: .circleci/run-rubocop.sh
-
       - run:
           name: Run Rspec
           command: .circleci/run-rspec.sh
-
-      # collect reports
       - store_test_results:
           path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+  deploy-dev:
+    docker:
+      - image: naughtldy/circleci-node-awscli:8
+    working_directory: ~/app
+    steps:
+      - attach_workspace:
+          at: .
+      - deploy:
+          name: Deploy
+          command: |
+            echo 'TODO: Please execute deploy scripts.'
+  deploy-prod:
+    docker:
+      - image: naughtldy/circleci-node-awscli:8
+    working_directory: ~/app
+    steps:
+      - attach_workspace:
+          at: .
+      - deploy:
+          name: Deploy
+          command: |
+            echo 'TODO: Please execute deploy scripts.'
+workflows:
+  version: 2
+  build_test_and_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy-dev:
+          requires:
+            - build
+            - test
+          filters:
+            branches:
+              only:
+                - develop
+      - deploy-prod:
+          requires:
+            - build
+            - test
+          filters:
+            branches:
+              only:
+                - master
